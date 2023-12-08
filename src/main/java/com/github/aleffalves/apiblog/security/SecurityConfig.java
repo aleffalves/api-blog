@@ -6,8 +6,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -25,13 +27,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.HandlerExceptionResolver;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,17 +38,19 @@ import java.util.Objects;
 @EnableWebSecurity
 public class SecurityConfig{
 
-    @Autowired
-    private final JwtTokenProvider jwtTokenProvider;
+    private final ApplicationContext applicationContext;
 
-    @Autowired
+    public SecurityConfig(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
+    private JwtTokenProvider getJwtTokenProvider() {
+        return applicationContext.getBean(JwtTokenProvider.class);
+    }
+
     @Qualifier("handlerExceptionResolver")
     HandlerExceptionResolver exceptionResolver;
 
-
-    public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
-    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -67,9 +68,9 @@ public class SecurityConfig{
                                 .requestMatchers("/users").denyAll()
                 )
                 .cors(Customizer.withDefaults())
-                .with(new JwtConfigurer(jwtTokenProvider, this.exceptionResolver), Customizer.withDefaults());
+                .with(new JwtConfigurer(getJwtTokenProvider(), exceptionResolver), Customizer.withDefaults());
 
-        http.exceptionHandling(exception -> exception.authenticationEntryPoint(new UnauthorizedHandler(this.exceptionResolver)));
+        http.exceptionHandling(exception -> exception.authenticationEntryPoint(new UnauthorizedHandler(exceptionResolver)));
 
         return http.build();
     }
