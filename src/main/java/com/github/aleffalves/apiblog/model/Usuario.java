@@ -66,6 +66,13 @@ public class Usuario implements UserDetails, Serializable {
     )
     private List<Permissao> permissoes;
 
+    public Usuario() {
+    }
+
+    public Usuario(Integer id) {
+        this.id = id;
+    }
+
     public List<String> getRoles() {
         List<String> roles = new ArrayList<>();
         for (Permissao permissao : permissoes) {

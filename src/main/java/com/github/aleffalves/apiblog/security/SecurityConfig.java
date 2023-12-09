@@ -1,7 +1,6 @@
 package com.github.aleffalves.apiblog.security;
 
 import com.github.aleffalves.apiblog.utils.ConstantsUtils;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ProblemDetail;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.Customizer;
@@ -48,6 +43,7 @@ public class SecurityConfig{
         return applicationContext.getBean(JwtTokenProvider.class);
     }
 
+    @Autowired
     @Qualifier("handlerExceptionResolver")
     HandlerExceptionResolver exceptionResolver;
 
