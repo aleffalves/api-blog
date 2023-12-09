@@ -56,6 +56,8 @@ public class JwtTokenProvider {
 
         return JWT.create()
                 .withClaim("id",usuario.getId())
+                .withClaim("nome", usuario.getNome())
+                .withClaim("nomeCompleto", usuario.getNome().concat(" " + usuario.getSobrenome()))
                 .withClaim( "roles" , usuario.getRoles())
                 .withIssuedAt(dataAtual)
                 .withExpiresAt(validade)
