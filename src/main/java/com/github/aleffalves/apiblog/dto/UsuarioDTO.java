@@ -19,7 +19,7 @@ public class UsuarioDTO {
     private String sobrenome;
     @NotBlank @Email
     private String email;
-    @NotBlank
+    @NotBlank @Size(min = 8)
     private String senha;
     private Date dataCriacao;
     private Boolean accountNonExpired;
