@@ -26,6 +26,7 @@ public class Post implements Serializable {
     @Column(name = "titulo")
     private String titulo;
 
+    @Lob @Basic(fetch = FetchType.LAZY)
     @Column(name = "mensagem")
     private String mensagem;
 
