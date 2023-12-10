@@ -6,4 +6,6 @@ public interface ComentarioService {
 
     ComentarioDTO salvar(ComentarioDTO comentarioDTO);
 
+    void deletar(Integer id);
+
 }
