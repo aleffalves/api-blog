@@ -56,6 +56,7 @@ public class SecurityConfig{
                         authorizeHttpRequests -> authorizeHttpRequests
                                 .requestMatchers(HttpMethod.GET, "/actuator**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/post").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/album").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/ws-socket/**").permitAll()

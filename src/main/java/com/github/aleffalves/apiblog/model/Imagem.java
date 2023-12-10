@@ -20,21 +20,19 @@ public class Imagem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "album_id", referencedColumnName = "id")
     private Album album;
 
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "tipo")
-    private String tipo;
+    @Column(name = "extensao")
+    private String extensao;
 
+    @Lob @Basic(fetch = FetchType.LAZY)
     @Column(name = "byte_imagem")
-    private byte[] byteImagem;
-
-    @Column(name = "tamanho_imagem")
-    private String tamanhoImagem;
+    private String byteImagem;
 
     @Column(name = "data_criacao")
     private Date dataCriacao;

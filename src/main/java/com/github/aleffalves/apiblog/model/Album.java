@@ -26,15 +26,15 @@ public class Album implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(mappedBy = "album")
-    private List<Imagem> imagens;
-
     @ManyToOne
     @JoinColumn(name = "usuario_criacao_id", referencedColumnName = "id")
     private Usuario usuarioCriacao;
 
     @Column(name = "data_criacao")
     private Date dataCriacao;
+
+    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Imagem> imagens;
 
     @PrePersist()
     public void executarAntesDeSalvar(){
