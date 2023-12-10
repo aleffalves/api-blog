@@ -21,6 +21,6 @@ public class PostDTO {
     private String mensagem;
     private UsuarioSelectDTO usuarioCriacao;
     private Date dataCriacao;
-    private List<Comentario> comentarios;
+    private List<ComentarioDTO> comentarios;
 
 }

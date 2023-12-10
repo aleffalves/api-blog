@@ -36,7 +36,7 @@ public class Post implements Serializable {
     @Column(name = "data_criacao")
     private Date dataCriacao;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
     private List<Comentario> comentarios;
 
     @PrePersist()
