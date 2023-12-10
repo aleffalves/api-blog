@@ -10,4 +10,6 @@ public interface PostService {
 
     Page<PostDTO> buscarTodosPosts(Pageable pageable);
 
+    void deletar(Integer id);
+
 }
