@@ -4,10 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-
 import java.io.Serial;
 import java.io.Serializable;
-
 
 @Getter
 @Setter

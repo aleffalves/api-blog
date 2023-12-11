@@ -3,8 +3,6 @@ package com.github.aleffalves.apiblog.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;

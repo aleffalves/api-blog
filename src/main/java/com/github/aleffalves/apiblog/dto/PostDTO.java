@@ -2,7 +2,6 @@ package com.github.aleffalves.apiblog.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.github.aleffalves.apiblog.model.Comentario;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 

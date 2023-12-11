@@ -1,7 +1,6 @@
 package com.github.aleffalves.apiblog.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.github.aleffalves.apiblog.model.Imagem;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

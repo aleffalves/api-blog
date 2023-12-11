@@ -3,12 +3,10 @@ package com.github.aleffalves.apiblog.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;

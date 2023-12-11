@@ -6,7 +6,6 @@ import com.github.aleffalves.apiblog.model.Usuario;
 import com.github.aleffalves.apiblog.repository.UsuarioRepository;
 import com.github.aleffalves.apiblog.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

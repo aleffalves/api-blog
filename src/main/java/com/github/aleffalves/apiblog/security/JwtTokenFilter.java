@@ -1,6 +1,5 @@
 package com.github.aleffalves.apiblog.security;
 
-import com.github.aleffalves.apiblog.utils.ConstantsUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
