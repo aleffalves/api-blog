@@ -3,6 +3,8 @@ package com.github.aleffalves.apiblog.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
@@ -20,7 +22,7 @@ public class Imagem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "album_id", referencedColumnName = "id")
     private Album album;
 

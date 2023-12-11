@@ -3,9 +3,11 @@ package com.github.aleffalves.apiblog.service.impl;
 import com.github.aleffalves.apiblog.dto.AlbumDTO;
 import com.github.aleffalves.apiblog.mapper.AlbumMapper;
 import com.github.aleffalves.apiblog.model.Album;
+import com.github.aleffalves.apiblog.model.Imagem;
 import com.github.aleffalves.apiblog.model.Post;
 import com.github.aleffalves.apiblog.repository.AlbumRepository;
 import com.github.aleffalves.apiblog.service.AlbumService;
+import com.github.aleffalves.apiblog.service.ImagemService;
 import com.github.aleffalves.apiblog.utils.MethodsUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,17 +22,26 @@ public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumRepository albumRepository;
     private final AlbumMapper albumMapper;
+    private final ImagemService imagemService;
 
-    public AlbumServiceImpl(AlbumRepository albumRepository, AlbumMapper albumMapper) {
+    public AlbumServiceImpl(AlbumRepository albumRepository, AlbumMapper albumMapper, ImagemService imagemService) {
         this.albumRepository = albumRepository;
         this.albumMapper = albumMapper;
+        this.imagemService = imagemService;
     }
 
     @Override
     public void salvar(AlbumDTO albumDTO) {
 
         try {
-            albumRepository.save(albumMapper.toEntity(albumDTO));
+            Album album = albumMapper.toEntity(albumDTO);
+            album = albumRepository.save(album);
+
+            for(Imagem imagem : album.getImagens()){
+                imagem.setAlbum(album);
+            }
+            imagemService.saveAll(album.getImagens());
+
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao tentar salvar album.", e);
         }
@@ -58,7 +69,7 @@ public class AlbumServiceImpl implements AlbumService {
         try {
             albumRepository.deleteById(id);
         }catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao tentar deletar comentário.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao tentar deletar album.");
         }
     }
 }

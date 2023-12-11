@@ -33,7 +33,7 @@ public class Album implements Serializable {
     @Column(name = "data_criacao")
     private Date dataCriacao;
 
-    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Imagem> imagens;
 
     @PrePersist()
