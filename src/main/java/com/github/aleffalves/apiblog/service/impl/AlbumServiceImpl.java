@@ -4,11 +4,11 @@ import com.github.aleffalves.apiblog.dto.AlbumDTO;
 import com.github.aleffalves.apiblog.mapper.AlbumMapper;
 import com.github.aleffalves.apiblog.model.Album;
 import com.github.aleffalves.apiblog.model.Imagem;
-import com.github.aleffalves.apiblog.model.Post;
 import com.github.aleffalves.apiblog.repository.AlbumRepository;
 import com.github.aleffalves.apiblog.service.AlbumService;
 import com.github.aleffalves.apiblog.service.ImagemService;
 import com.github.aleffalves.apiblog.utils.MethodsUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -18,17 +18,12 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AlbumServiceImpl implements AlbumService {
 
     private final AlbumRepository albumRepository;
     private final AlbumMapper albumMapper;
     private final ImagemService imagemService;
-
-    public AlbumServiceImpl(AlbumRepository albumRepository, AlbumMapper albumMapper, ImagemService imagemService) {
-        this.albumRepository = albumRepository;
-        this.albumMapper = albumMapper;
-        this.imagemService = imagemService;
-    }
 
     @Override
     public void salvar(AlbumDTO albumDTO) {

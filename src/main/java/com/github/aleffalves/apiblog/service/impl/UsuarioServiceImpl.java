@@ -5,6 +5,7 @@ import com.github.aleffalves.apiblog.mapper.UsuarioMapper;
 import com.github.aleffalves.apiblog.model.Usuario;
 import com.github.aleffalves.apiblog.repository.UsuarioRepository;
 import com.github.aleffalves.apiblog.service.UsuarioService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,18 +18,12 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
-
-
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper,@Lazy PasswordEncoder passwordEncoder) {
-        this.usuarioRepository = usuarioRepository;
-        this.usuarioMapper = usuarioMapper;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

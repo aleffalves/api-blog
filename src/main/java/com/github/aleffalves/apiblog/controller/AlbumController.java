@@ -3,6 +3,7 @@ package com.github.aleffalves.apiblog.controller;
 import com.github.aleffalves.apiblog.dto.AlbumDTO;
 import com.github.aleffalves.apiblog.service.AlbumService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/album")
+@RequiredArgsConstructor()
 public class AlbumController {
 
     private final AlbumService albumService;
-
-    public AlbumController(AlbumService albumService) {
-        this.albumService = albumService;
-    }
 
     @PostMapping()
     public ResponseEntity<Void> salvar(@Valid @RequestBody AlbumDTO albumDTO){

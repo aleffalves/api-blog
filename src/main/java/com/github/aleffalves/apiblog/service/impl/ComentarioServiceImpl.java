@@ -6,6 +6,7 @@ import com.github.aleffalves.apiblog.model.Comentario;
 import com.github.aleffalves.apiblog.repository.ComentarioRepository;
 import com.github.aleffalves.apiblog.service.ComentarioService;
 import com.github.aleffalves.apiblog.utils.MethodsUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,15 +14,11 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ComentarioServiceImpl implements ComentarioService {
 
     private final ComentarioRepository comentarioRepository;
     private final ComentarioMapper comentarioMapper;
-
-    public ComentarioServiceImpl(ComentarioRepository comentarioRepository, ComentarioMapper comentarioMapper) {
-        this.comentarioRepository = comentarioRepository;
-        this.comentarioMapper = comentarioMapper;
-    }
 
     @Override
     public ComentarioDTO salvar(ComentarioDTO comentarioDTO) {

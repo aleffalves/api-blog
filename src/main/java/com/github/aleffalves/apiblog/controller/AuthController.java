@@ -6,6 +6,7 @@ import com.github.aleffalves.apiblog.dto.UsuarioDTO;
 import com.github.aleffalves.apiblog.service.AuthService;
 import com.github.aleffalves.apiblog.service.UsuarioService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,15 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor()
 public class AuthController {
 
     private final AuthService authService;
     private final UsuarioService usuarioService;
-
-    public AuthController(AuthService authService, UsuarioService usuarioService) {
-        this.authService = authService;
-        this.usuarioService = usuarioService;
-    }
 
     @PostMapping("/autenticar")
     public ResponseEntity<TokenDTO> logar(@RequestBody LoginDTO loginDTO){

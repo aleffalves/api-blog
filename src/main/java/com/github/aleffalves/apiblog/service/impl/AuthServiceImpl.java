@@ -6,23 +6,19 @@ import com.github.aleffalves.apiblog.model.Usuario;
 import com.github.aleffalves.apiblog.security.JwtTokenProvider;
 import com.github.aleffalves.apiblog.service.AuthService;
 import com.github.aleffalves.apiblog.service.UsuarioService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UsuarioService usuarioService;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
-
-    public AuthServiceImpl(UsuarioService usuarioService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
-        this.usuarioService = usuarioService;
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenProvider = jwtTokenProvider;
-    }
 
     @Override
     public TokenDTO logar(LoginDTO loginDTO) {

@@ -6,6 +6,7 @@ import com.github.aleffalves.apiblog.model.Post;
 import com.github.aleffalves.apiblog.repository.PostRepository;
 import com.github.aleffalves.apiblog.service.PostService;
 import com.github.aleffalves.apiblog.utils.MethodsUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,15 +16,11 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
     private final PostMapper postMapper;
-
-    public PostServiceImpl(PostRepository postRepository, PostMapper postMapper) {
-        this.postRepository = postRepository;
-        this.postMapper = postMapper;
-    }
 
     @Override
     public PostDTO salvar(PostDTO postDTO) {
