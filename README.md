@@ -19,4 +19,4 @@ Para executar o projeto efetue os seguintes passos:
 
 2 - Após a instalação e inicialização do docker. Na raiz do projeto efetue o comando docker compose up -d --build
 
-3 - Após a inicialização do conteiner docker. Start o seu projeto.
+3 - Após a inicialização do container docker. Start o seu projeto.
